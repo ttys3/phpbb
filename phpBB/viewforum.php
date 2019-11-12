@@ -22,6 +22,7 @@ include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 
 // Start session
 $user->session_begin();
+$user->prevent_guest_access();
 $auth->acl($user->data);
 
 // Start initial var setup

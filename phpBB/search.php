@@ -21,6 +21,7 @@ include($phpbb_root_path . 'common.' . $phpEx);
 
 // Start session management
 $user->session_begin();
+$user->prevent_guest_access();
 $auth->acl($user->data);
 $user->setup('search');
 

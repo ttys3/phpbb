@@ -661,13 +661,6 @@ class session
 		$this->data['is_registered'] = (!$bot && $this->data['user_id'] != ANONYMOUS && ($this->data['user_type'] == USER_NORMAL || $this->data['user_type'] == USER_FOUNDER)) ? true : false;
 		$this->data['is_bot'] = ($bot) ? true : false;
 
-		// only allow registered user access
-		if (!$this->data['is_registered'])
-		{
-		   login_box();
-		   die();
-		} 
-
 		// If our friend is a bot, we re-assign a previously assigned session
 		if ($this->data['is_bot'] && $bot == $this->data['user_id'] && $this->data['session_id'])
 		{
@@ -1649,4 +1642,17 @@ class session
 			}
 		}
 	}
+
+	// to enable this feature: add define('PHPBB_PREVENT_GUEST_ACCESS', true); to config.php
+	public function prevent_guest_access() {
+	    if (!constant('PHPBB_PREVENT_GUEST_ACCESS')) {
+	        return;
+        }
+        // only allow registered user access
+        if (!$this->data['is_registered'])
+        {
+            login_box();
+            die();
+        }
+    }
 }

@@ -25,6 +25,7 @@ include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 
 // Start session management
 $user->session_begin();
+$user->prevent_guest_access();
 $auth->acl($user->data);
 $user->setup('viewforum');
 

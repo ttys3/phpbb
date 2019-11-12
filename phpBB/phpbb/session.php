@@ -1645,7 +1645,7 @@ class session
 
 	// to enable this feature: add define('PHPBB_PREVENT_GUEST_ACCESS', true); to config.php
 	public function prevent_guest_access() {
-	    if (!constant('PHPBB_PREVENT_GUEST_ACCESS')) {
+	    if (!defined('PHPBB_PREVENT_GUEST_ACCESS') || !PHPBB_PREVENT_GUEST_ACCESS) {
 	        return;
         }
         // only allow registered user access
